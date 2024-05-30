@@ -363,6 +363,23 @@ typer = ">=0.12.3"
 uvicorn = {version = ">=0.15.0", extras = ["standard"]}
 
 [[package]]
+name = "fastui"
+version = "0.6.0"
+description = "Build better UIs faster."
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "fastui-0.6.0-py3-none-any.whl", hash = "sha256:f5720ed88a6e135e91876d424a2e7a916e208d630d85d87db754881fcacd5f0e"},
+    {file = "fastui-0.6.0.tar.gz", hash = "sha256:9ad5749aa0e0b0aa59a4f8109a632532f56dce2b46c0239df661c3a6cbec9084"},
+]
+
+[package.dependencies]
+pydantic = {version = ">=2.5.2", extras = ["email"]}
+
+[package.extras]
+fastapi = ["fastapi (>=0.104)", "python-multipart (>=0.0.6)"]
+
+[[package]]
 name = "h11"
 version = "0.14.0"
 description = "A pure-Python, bring-your-own-I/O implementation of HTTP/1.1"
@@ -475,6 +492,17 @@ python-versions = ">=3.5"
 files = [
     {file = "idna-3.7-py3-none-any.whl", hash = "sha256:82fee1fc78add43492d3a1898bfa6d8a904cc97d8427f683ed8e798d07761aa0"},
     {file = "idna-3.7.tar.gz", hash = "sha256:028ff3aadf0609c1fd278d8ea3089299412a7a8b9bd005dd08b9f8285bcb5cfc"},
+]
+
+[[package]]
+name = "iniconfig"
+version = "2.0.0"
+description = "brain-dead simple config-ini parsing"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "iniconfig-2.0.0-py3-none-any.whl", hash = "sha256:b6a85871a79d2e3b22d2d1b94ac2824226a63c6b741c88f7ae975f18b6778374"},
+    {file = "iniconfig-2.0.0.tar.gz", hash = "sha256:2d91e135bf72d31a410b17c16da610a82cb55f6b0477d1a902134b24a455b8b3"},
 ]
 
 [[package]]
@@ -654,6 +682,32 @@ files = [
 ]
 
 [[package]]
+name = "packaging"
+version = "24.0"
+description = "Core utilities for Python packages"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "packaging-24.0-py3-none-any.whl", hash = "sha256:2ddfb553fdf02fb784c234c7ba6ccc288296ceabec964ad2eae3777778130bc5"},
+    {file = "packaging-24.0.tar.gz", hash = "sha256:eb82c5e3e56209074766e6885bb04b8c38a0c015d0a30036ebe7ece34c9989e9"},
+]
+
+[[package]]
+name = "pluggy"
+version = "1.5.0"
+description = "plugin and hook calling mechanisms for python"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "pluggy-1.5.0-py3-none-any.whl", hash = "sha256:44e1ad92c8ca002de6377e165f3e0f1be63266ab4d554740532335b9d75ea669"},
+    {file = "pluggy-1.5.0.tar.gz", hash = "sha256:2cffa88e94fdc978c4c574f15f9e59b7f4201d439195c3715ca9e2486f1d0cf1"},
+]
+
+[package.extras]
+dev = ["pre-commit", "tox"]
+testing = ["pytest", "pytest-benchmark"]
+
+[[package]]
 name = "pycparser"
 version = "2.22"
 description = "C parser in Python"
@@ -677,6 +731,7 @@ files = [
 
 [package.dependencies]
 annotated-types = ">=0.4.0"
+email-validator = {version = ">=2.0.0", optional = true, markers = "extra == \"email\""}
 pydantic-core = "2.18.2"
 typing-extensions = ">=4.6.1"
 
@@ -789,6 +844,16 @@ files = [
 windows-terminal = ["colorama (>=0.4.6)"]
 
 [[package]]
+name = "pykerberos"
+version = "1.2.4"
+description = "High-level interface to Kerberos"
+optional = false
+python-versions = "*"
+files = [
+    {file = "pykerberos-1.2.4.tar.gz", hash = "sha256:9d701ebd8fc596c99d3155d5ba45813bd5908d26ef83ba0add250edb622abed4"},
+]
+
+[[package]]
 name = "pyspnego"
 version = "0.10.2"
 description = "Windows Negotiate Authentication Client and Server"
@@ -806,6 +871,26 @@ sspilib = {version = ">=0.1.0", markers = "sys_platform == \"win32\""}
 [package.extras]
 kerberos = ["gssapi (>=1.6.0)", "krb5 (>=0.3.0)"]
 yaml = ["ruamel.yaml"]
+
+[[package]]
+name = "pytest"
+version = "8.2.0"
+description = "pytest: simple powerful testing with Python"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "pytest-8.2.0-py3-none-any.whl", hash = "sha256:1733f0620f6cda4095bbf0d9ff8022486e91892245bb9e7d5542c018f612f233"},
+    {file = "pytest-8.2.0.tar.gz", hash = "sha256:d507d4482197eac0ba2bae2e9babf0672eb333017bcedaa5fb1a3d42c1174b3f"},
+]
+
+[package.dependencies]
+colorama = {version = "*", markers = "sys_platform == \"win32\""}
+iniconfig = "*"
+packaging = "*"
+pluggy = ">=1.5,<2.0"
+
+[package.extras]
+dev = ["argcomplete", "attrs (>=19.2)", "hypothesis (>=3.56)", "mock", "pygments (>=2.7.2)", "requests", "setuptools", "xmlschema"]
 
 [[package]]
 name = "python-dotenv"
@@ -847,9 +932,11 @@ files = [
 ]
 
 [package.dependencies]
+pykerberos = {version = ">=1.2.1,<2.0.0", optional = true, markers = "sys_platform != \"win32\" and extra == \"kerberos\""}
 requests = ">=2.9.1"
 requests-ntlm = ">=1.1.0"
 six = "*"
+winkerberos = {version = ">=0.5.0", optional = true, markers = "sys_platform == \"win32\" and extra == \"kerberos\""}
 xmltodict = "*"
 
 [package.extras]
@@ -881,6 +968,7 @@ files = [
     {file = "PyYAML-6.0.1-cp311-cp311-win_amd64.whl", hash = "sha256:bf07ee2fef7014951eeb99f56f39c9bb4af143d8aa3c21b1677805985307da34"},
     {file = "PyYAML-6.0.1-cp312-cp312-macosx_10_9_x86_64.whl", hash = "sha256:855fb52b0dc35af121542a76b9a84f8d1cd886ea97c84703eaa6d88e37a2ad28"},
     {file = "PyYAML-6.0.1-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:40df9b996c2b73138957fe23a16a4f0ba614f4c0efce1e9406a184b6d07fa3a9"},
+    {file = "PyYAML-6.0.1-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:a08c6f0fe150303c1c6b71ebcd7213c2858041a7e01975da3a99aed1e7a378ef"},
     {file = "PyYAML-6.0.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:6c22bec3fbe2524cde73d7ada88f6566758a8f7227bfbf93a408a9d86bcc12a0"},
     {file = "PyYAML-6.0.1-cp312-cp312-musllinux_1_1_x86_64.whl", hash = "sha256:8d4e9c88387b0f5c7d5f281e55304de64cf7f9c0021a3525bd3b1c542da3b0e4"},
     {file = "PyYAML-6.0.1-cp312-cp312-win32.whl", hash = "sha256:d483d2cdf104e7c9fa60c544d92981f12ad66a457afae824d146093b8c294c54"},
@@ -969,6 +1057,32 @@ pygments = ">=2.13.0,<3.0.0"
 
 [package.extras]
 jupyter = ["ipywidgets (>=7.5.1,<9)"]
+
+[[package]]
+name = "ruff"
+version = "0.4.4"
+description = "An extremely fast Python linter and code formatter, written in Rust."
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "ruff-0.4.4-py3-none-macosx_10_12_x86_64.whl", hash = "sha256:29d44ef5bb6a08e235c8249294fa8d431adc1426bfda99ed493119e6f9ea1bf6"},
+    {file = "ruff-0.4.4-py3-none-macosx_11_0_arm64.whl", hash = "sha256:c4efe62b5bbb24178c950732ddd40712b878a9b96b1d02b0ff0b08a090cbd891"},
+    {file = "ruff-0.4.4-py3-none-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:4c8e2f1e8fc12d07ab521a9005d68a969e167b589cbcaee354cb61e9d9de9c15"},
+    {file = "ruff-0.4.4-py3-none-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:60ed88b636a463214905c002fa3eaab19795679ed55529f91e488db3fe8976ab"},
+    {file = "ruff-0.4.4-py3-none-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:b90fc5e170fc71c712cc4d9ab0e24ea505c6a9e4ebf346787a67e691dfb72e85"},
+    {file = "ruff-0.4.4-py3-none-manylinux_2_17_ppc64.manylinux2014_ppc64.whl", hash = "sha256:8e7e6ebc10ef16dcdc77fd5557ee60647512b400e4a60bdc4849468f076f6eef"},
+    {file = "ruff-0.4.4-py3-none-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:b9ddb2c494fb79fc208cd15ffe08f32b7682519e067413dbaf5f4b01a6087bcd"},
+    {file = "ruff-0.4.4-py3-none-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:c51c928a14f9f0a871082603e25a1588059b7e08a920f2f9fa7157b5bf08cfe9"},
+    {file = "ruff-0.4.4-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:b5eb0a4bfd6400b7d07c09a7725e1a98c3b838be557fee229ac0f84d9aa49c36"},
+    {file = "ruff-0.4.4-py3-none-musllinux_1_2_aarch64.whl", hash = "sha256:b1867ee9bf3acc21778dcb293db504692eda5f7a11a6e6cc40890182a9f9e595"},
+    {file = "ruff-0.4.4-py3-none-musllinux_1_2_armv7l.whl", hash = "sha256:1aecced1269481ef2894cc495647392a34b0bf3e28ff53ed95a385b13aa45768"},
+    {file = "ruff-0.4.4-py3-none-musllinux_1_2_i686.whl", hash = "sha256:9da73eb616b3241a307b837f32756dc20a0b07e2bcb694fec73699c93d04a69e"},
+    {file = "ruff-0.4.4-py3-none-musllinux_1_2_x86_64.whl", hash = "sha256:958b4ea5589706a81065e2a776237de2ecc3e763342e5cc8e02a4a4d8a5e6f95"},
+    {file = "ruff-0.4.4-py3-none-win32.whl", hash = "sha256:cb53473849f011bca6e754f2cdf47cafc9c4f4ff4570003a0dad0b9b6890e876"},
+    {file = "ruff-0.4.4-py3-none-win_amd64.whl", hash = "sha256:424e5b72597482543b684c11def82669cc6b395aa8cc69acc1858b5ef3e5daae"},
+    {file = "ruff-0.4.4-py3-none-win_arm64.whl", hash = "sha256:39df0537b47d3b597293edbb95baf54ff5b49589eb7ff41926d8243caa995ea6"},
+    {file = "ruff-0.4.4.tar.gz", hash = "sha256:f87ea42d5cdebdc6a69761a9d0bc83ae9b3b30d0ad78952005ba6568d6c022af"},
+]
 
 [[package]]
 name = "shellingham"
@@ -1416,6 +1530,28 @@ files = [
 ]
 
 [[package]]
+name = "winkerberos"
+version = "0.10.0"
+description = "High level interface to SSPI for Kerberos client auth"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "winkerberos-0.10.0-cp310-cp310-win32.whl", hash = "sha256:d448097858412a3eaa2cac77caf2651b90518a2cca2dcd9cd5818831bf89b67c"},
+    {file = "winkerberos-0.10.0-cp310-cp310-win_amd64.whl", hash = "sha256:1c1536afefaba8bebffc6fccf1f62c45f1835f8c132d1eb48ec4652f7a7dacb3"},
+    {file = "winkerberos-0.10.0-cp311-cp311-win32.whl", hash = "sha256:9b8c36f8209236671331598a9f155193db0e62e3d1f27b5f13dccc351a07db80"},
+    {file = "winkerberos-0.10.0-cp311-cp311-win_amd64.whl", hash = "sha256:6a02b17d90854b177badaee764960d5f62a403af73265bc6fd6a24d568155ba8"},
+    {file = "winkerberos-0.10.0-cp312-cp312-win32.whl", hash = "sha256:382f10b6cf35334f9b3449d375105a1c62419d00f982d90862c094b54be14de2"},
+    {file = "winkerberos-0.10.0-cp312-cp312-win_amd64.whl", hash = "sha256:c11691100c43e2d2e04904af0704f222a84d9956f125643bb67d1bcb464d0dcc"},
+    {file = "winkerberos-0.10.0-cp37-cp37m-win32.whl", hash = "sha256:becbef2729581742641a970e7475cd7a985d7b9481f649ff37af8dae2a54b367"},
+    {file = "winkerberos-0.10.0-cp37-cp37m-win_amd64.whl", hash = "sha256:58c63a11deda20f5ce5e29275da531b99a8bb5f8803a4f1306ebc1ffc2691b27"},
+    {file = "winkerberos-0.10.0-cp38-cp38-win32.whl", hash = "sha256:38b47c3815f02335cb60b29d8e3b5000fe4fb0a109979a23dd8c3db1637b49e4"},
+    {file = "winkerberos-0.10.0-cp38-cp38-win_amd64.whl", hash = "sha256:869d98cb4f138056c730f44a3d939983e45a64b7066007e29c97a6f093589c09"},
+    {file = "winkerberos-0.10.0-cp39-cp39-win32.whl", hash = "sha256:79b7e36c2c87a308d5eb046bcb98758df88e6f5f87c93e1920fb985cdc7b8d0b"},
+    {file = "winkerberos-0.10.0-cp39-cp39-win_amd64.whl", hash = "sha256:0e9fbc2a93905eee31835cafb45fd6582c85a063fe10eb2dce49f78bde224c4c"},
+    {file = "winkerberos-0.10.0.tar.gz", hash = "sha256:cbc27fc0fd31a40c5222a8bbde28a92735bf8438c1ea5ae0a1f841ecc54737cb"},
+]
+
+[[package]]
 name = "xmltodict"
 version = "0.13.0"
 description = "Makes working with XML feel like you are working with JSON"
@@ -1428,5 +1564,5 @@ files = [
 
 [metadata]
 lock-version = "2.0"
-python-versions = "^3.11"
-content-hash = "e84f87ca27c28a95fc908a88fac70e16cd8e43d92cb9432c10707d53035c92f1"
+python-versions = "^3.12"
+content-hash = "8d5cf85fd3639a79a1f3830522cd6775fa74bd44e8914763ca62b5b532ed43bc"
